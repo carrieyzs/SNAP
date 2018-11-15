@@ -7,19 +7,19 @@ import java.util.Arrays;
  * 
  * @author Carrie
  *
- * @param <E>
+ * @param <T>
  */
-public class CyclicList<E> {
+public class CyclicList<T> {
 	private static final int SIZE = 10;
 	
-	private E[] data;
+	private T[] data;
 	private int size;
 	
 	/**
 	 * Create a new cyclic list.
 	 */
 	public CyclicList(){
-		data = (E[]) new Object[SIZE];
+		data = (T[]) new Object[SIZE];
 		size = 0;
 	}
 	
@@ -38,7 +38,7 @@ public class CyclicList<E> {
 	 * @param item 
 	 * 			item to add into the list
 	 */
-	public void add(E item) {
+	public void add(T item) {
 		ensureCapacity();
 		checkValid(item);
 		data[size] = item;
@@ -52,11 +52,11 @@ public class CyclicList<E> {
 	 * 		index of the item to be removed
 	 * @return item that was previously at the index
 	 */
-	public E remove(int i) {
+	public T remove(int i) {
 		return null;
 	}
 	
-	public boolean contains(E item) {
+	public boolean contains(T item) {
 		return false;
 	}
 	
@@ -68,7 +68,7 @@ public class CyclicList<E> {
 		if (size < data.length) return;	// still space remaining
 		
 		// create a new array, and copy items over
-		E[] temp = (E[]) Arrays.copyOf(data, data.length*2);
+		T[] temp = (T[]) Arrays.copyOf(data, data.length*2);
 		data = temp;
 	}
 	
@@ -77,7 +77,7 @@ public class CyclicList<E> {
 	 * @param item
 	 * 			item to check for
 	 */
-	private void checkValid(E item) {
+	private void checkValid(T item) {
 		if (item == null)
 			throw new IllegalArgumentException();
 	}
