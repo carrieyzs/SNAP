@@ -1,4 +1,10 @@
 
+/**
+ * Table acts like the 'board'. It keeps track of the cards being played 
+ * and the current play.
+ * 
+ * @author Carrie
+ */
 public class Table extends GUI {
 	private CyclicList<Player> players;
 	private Player currentPlayer, nextPlayer;

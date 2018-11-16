@@ -5,7 +5,7 @@ import org.junit.*;
 public class CyclicListTests {
 	
 	// get a starter list
-//	public CyclicList getList() {
+//	public static CyclicList getList() {
 //		CyclicList<Integer> list = new CyclicList<Integer>();
 //	}
 	
