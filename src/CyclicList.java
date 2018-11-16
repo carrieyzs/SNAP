@@ -1,15 +1,16 @@
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * CyclicList is a circular version of a list. This version is a
  * single cyclic list, where the last item meets the first item.
- * This list does not keep track of size.
+ * This list does not keep track of size, and allows duplicates.
  * 
  * @author Carrie
  *
  * @param <T>
  */
-public class CyclicList<T> {
+public class CyclicList<T> implements Iterable<T> {
 	private static final int SIZE = 10;
 	
 	private T[] data;
@@ -39,10 +40,44 @@ public class CyclicList<T> {
 	 * 			item to add into the list
 	 */
 	public void add(T item) {
+		if (item == null)
+			throw new IllegalArgumentException();
+		// check for class types?
+		
 		ensureCapacity();
-		checkValid(item);
 		data[size] = item;
 		size++;
+	}
+	
+	/**
+	 * Uses binary search to find the index, and get the element at
+	 * that index
+	 * 
+	 * @param i 
+	 * 		index to search for
+	 * @return
+	 * 		element at the index
+	 */
+	public T get(int i) {
+	int low = 0, high = size;
+		
+		T res = null;
+		while (low <= high) {
+			int mid = (low + high) / 2;
+			
+			if (mid == i) {		// found the index
+				res = data[mid];
+				break;
+			}
+			else if (i < mid) {		// index in left part of array
+				high = mid;
+			}
+			else {		// otherwise it's in the right part
+				low = mid;
+			}
+		}
+		
+		return res;	
 	}
 	
 	/**
@@ -50,14 +85,59 @@ public class CyclicList<T> {
 	 * items down by one.
 	 * @param i
 	 * 		index of the item to be removed
-	 * @return item that was previously at the index
+	 * @return 
+	 * 		item that was previously at the index
 	 */
 	public T remove(int i) {
-		return null;
+		if (i<0 || i>data.length) return null;
+		
+		T remove = get(i);	// get the value at the index
+		shiftItems(i);		// shift items down
+		
+		return remove;
 	}
 	
-	public boolean contains(T item) {
-		return false;
+	/**
+	 * Secondary remove method that removes the item from the array.
+	 * After removal, shifts all items down.
+	 * @param item
+	 * @return
+	 */
+	public T remove(T item) {
+		int i;
+		if ((i = contains(item)) == -1) return null;
+		
+		T res = data[i];	// get the value at the index
+		shiftItems(i);		// shift items down
+		return res;
+	}
+	
+	/**
+	 * Shifts items down from the specified index.
+	 * @param ind
+	 * 			starting index to shift items from
+	 */
+	private void shiftItems(int i) {
+		for (int ind=i; ind<data.length-1; ind++) 
+			data[ind] = data[ind+1];
+		data[size] = null;		// handle last element
+		size--;
+	}
+	
+	/**
+	 * Finds whether the item exists in the array, and returns the
+	 * index position of the first occurrence.
+	 * @param item
+	 * 		item to look for
+	 * @return
+	 * 		index position of item in array, -1 if it doesn't exist
+	 */
+	public int contains(T item) {
+		for (int i=0; i<data.length; i++) {
+			if (data[i].equals(item)) return i;
+		}
+		
+		return -1;
 	}
 	
 	/**
@@ -71,14 +151,47 @@ public class CyclicList<T> {
 		T[] temp = (T[]) Arrays.copyOf(data, data.length*2);
 		data = temp;
 	}
+
+	@Override
+	public Iterator iterator() {
+		return new CyclicListIterator<T>(this);
+	}
 	
-	/**
-	 * Checks for and handles any exceptional behaviour.
-	 * @param item
-	 * 			item to check for
-	 */
-	private void checkValid(T item) {
-		if (item == null)
-			throw new IllegalArgumentException();
+	//================================================================================
+	// private iterator class - CyclicIterator
+	//================================================================================
+
+	private class CyclicListIterator<T> implements Iterator<T>{
+		private CyclicList list;
+		private int index;
+		
+		/**
+		 * Create the cyclic list iterator.
+		 */
+		public CyclicListIterator(CyclicList c) {
+			list = c;
+			index = 0;
+		}
+
+		/**
+		 * Checks whether or not there is an element left
+		 */
+		@Override
+		public boolean hasNext() {
+			if (index < 0 || index > list.size()) return false;
+			return true;
+		}
+
+		/**
+		 * Returns the element at the current index position, and
+		 * shifts pointer to point to next index.
+		 */
+		@Override
+		public T next() {
+			T res = (T) list.get(index);
+			index++;
+			return res;
+		}
+		
 	}
 }

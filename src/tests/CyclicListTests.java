@@ -5,9 +5,9 @@ import org.junit.*;
 public class CyclicListTests {
 	
 	// get a starter list
-	/*public CyclicList getList() {
-		CyclicList<Integer> list = new CyclicList<Integer>();
-	}*/
+//	public CyclicList getList() {
+//		CyclicList<Integer> list = new CyclicList<Integer>();
+//	}
 	
 	//===============================================================
 
@@ -22,7 +22,12 @@ public class CyclicListTests {
 	}
 	
 	@Test
-	public void testAddBadItem() {
+	public void testAddBadItem1() {
+		
+	}
+	
+	@Test
+	public void testAddBadItem2() {
 		
 	}
 	
@@ -48,6 +53,11 @@ public class CyclicListTests {
 	
 	@Test
 	public void testContains() {
+		
+	}
+	
+	@Test
+	public void testIterator() {
 		
 	}
 }
