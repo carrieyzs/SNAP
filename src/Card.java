@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A Card consists of a Suit and a Rank. 
@@ -52,8 +55,8 @@ public class Card implements Comparable<Card>{
 	 * Method to get a full deck of cards, already shuffled!
 	 * @return
 	 */
-	public static CyclicList<Card> getDeck(){
-		CyclicList<Card> list = new CyclicList<Card>();
+	public static List<Card> getDeck(){
+		List<Card> list = new ArrayList<Card>();
 		
 		// get suit and rank of every card, and add to the list
 		for (Suit s: Suit.values()) {
@@ -62,7 +65,7 @@ public class Card implements Comparable<Card>{
 			}
 		}
 		
-		list.shuffle();
+		Collections.shuffle(list);
 		return list;
 	}
 	
