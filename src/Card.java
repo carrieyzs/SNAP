@@ -1,8 +1,17 @@
 
-public class Card {
+/**
+ * A Card consists of a Suit and a Rank. 
+ * This class overrides Object's equals method, as well as provides
+ * its own natural ordering.
+ * 
+ * @author Carrie
+ */
+public class Card implements Comparable<Card>{
 	
+	/**
+	 * Rank of the cards in ascending order.
+	 */
 	public enum Rank{
-		ACE,
 		ONE,
 		TWO,
 		THREE,
@@ -15,15 +24,21 @@ public class Card {
 		TEN,
 		JACK,
 		QUEEN,
-		KING;
+		KING,
+		ACE;
 	}
 	
+	/**
+	 * Suit of the cards, by convention, in ascending order.
+	 */
 	public enum Suit{
-		HEART,
-		SPADE,
-		DIAMOND,
-		CLUB;
+		CLUBS,
+		DIAMONDS,
+		HEARTS,
+		SPADES;
 	}
+	
+	//================================================================================
 
 	public final Suit suit;
 	public final Rank rank;
@@ -50,4 +65,39 @@ public class Card {
 		list.shuffle();
 		return list;
 	}
+	
+	/**
+	 * Overrides Object's equals method. A card is equal to another
+	 * card, essentially, if their suits and ranks are the same.
+	 */
+	@Override
+	public boolean equals(Object o) {
+		//TODO
+		return false;
+	}
+	
+	/**
+	 * Based on Java's object contract, overriding Object.equals() 
+	 * means that Object.hashCode() must also be overridden.
+	 */
+	@Override
+	public int hashCode() {
+		//TODO
+		return 0;
+	}
+
+	/**
+	 * Typically, a card is compared to another based on both suit 
+	 * and rank. But in this case, we customize it so that just the
+	 * rank of the cards are comparable. We compare them in the 
+	 * position that they appear in the Rank enum, which orders them
+	 * in ascending order.
+	 */
+	@Override
+	public int compareTo(Card o) {
+		//TODO
+		return 0;
+	}
+	
+	
 }
