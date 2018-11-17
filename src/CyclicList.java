@@ -1,5 +1,8 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * CyclicList is a circular version of a list. This version is a
@@ -29,9 +32,14 @@ public class CyclicList<T> implements Iterable<T> {
 	 * @return 
 	 * 		no. of items in list
 	 */
-	public int size() {
-		return size;
-	}
+	public int size() { return size; }
+	
+	/**
+	 * Checks whether or not this CyclicList is empty.
+	 * @return
+	 * 		true if nothing in the list, false otherwise
+	 */
+	public boolean isEmpty() { return data[0] == null; }
 	
 	/**
 	 * Adds an item to the end of the array. It handles resizing the
@@ -138,6 +146,43 @@ public class CyclicList<T> implements Iterable<T> {
 		}
 		
 		return -1;
+	}
+	
+	/**
+	 * Gets the next item from the given index. 
+	 * eg) index = 0, get item at index 1
+	 * Since it's a cyclic list, if the index is the last element, 
+	 * the first item will be returned.
+	 * 
+	 * @param index
+	 * 			position to get next item from
+	 * @return
+	 * 		item at the next given position
+	 */
+	public T next(int index) {
+		if (index < 0)
+			throw new IndexOutOfBoundsException();
+		
+		if (index == size)	// returns first item if it's the last item
+			return data[0];
+		
+		return data[index+1];	// otherwise return the next item
+	}
+	
+	/**
+	 * Randomly assort the contents of the list -- but only the areas
+	 * of the array that are actually occupied. Otherwise, we'll end
+	 * up with empty slots peppered over the list. 
+	 */
+	public void shuffle() {
+		// nothing in the list
+		if (data == null || isEmpty()) return;
+		
+		// shuffle only the areas that are occupied
+		List<T> temp = new ArrayList<>(Arrays.asList(
+				Arrays.copyOfRange(data, 0, size)));
+		Collections.shuffle(temp);	// shuffle as list
+		data = temp.toArray(data);	// convert list back to array
 	}
 	
 	/**
