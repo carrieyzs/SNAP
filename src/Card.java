@@ -101,6 +101,4 @@ public class Card implements Comparable<Card>{
 		//TODO
 		return 0;
 	}
-	
-	
 }

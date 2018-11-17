@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -7,9 +9,16 @@ import javax.swing.JFrame;
  * @author Carrie
  */
 public abstract class GUI {
+	// ABSTRACT METHODS:
+	/** Renders the container based on the game state. */
+	public abstract void renderStart(Graphics g);
+	public abstract void render(Graphics g);
+	public abstract void renderEnd(Graphics g);
+	
 	// JSwing fields
 	protected JFrame frame;
 	protected JComponent container;
+	protected Graphics drawingArea;
 	
 	
 	// Game related fields
@@ -31,6 +40,20 @@ public abstract class GUI {
 	 * Also sets up game state (initially at start state).
 	 */
 	private void init() {
+		currentState = State.START;
+		container = new JComponent() {
+			// assign the graphics object first, so it's accessible
+			@Override
+			public void paintComponent(Graphics g) {
+				drawingArea = g;
+			}
+		};
+		renderStart(drawingArea);	// renders initial state
 		
+		frame.add(container);
+		
+		frame.pack();
+		frame.setVisible(true);
 	}
+
 }

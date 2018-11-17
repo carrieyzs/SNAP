@@ -207,13 +207,13 @@ public class CyclicList<T> implements Iterable<T> {
 	//================================================================================
 
 	private class CyclicListIterator<T> implements Iterator<T>{
-		private CyclicList list;
+		private CyclicList<T> list;
 		private int index;
 		
 		/**
 		 * Create the cyclic list iterator.
 		 */
-		public CyclicListIterator(CyclicList c) {
+		public CyclicListIterator(CyclicList<T> c) {
 			list = c;
 			index = 0;
 		}
