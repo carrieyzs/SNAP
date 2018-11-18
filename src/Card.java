@@ -91,8 +91,12 @@ public class Card implements Comparable<Card>{
 	 */
 	@Override
 	public int hashCode() {
-		//TODO
-		return 0;
+		int result = 1;
+		
+		result = 31 * result + rank.hashCode();
+		result = 31 * result + suit.hashCode();
+		
+		return result;
 	}
 
 	/**
