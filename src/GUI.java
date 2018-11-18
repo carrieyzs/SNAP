@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 public abstract class GUI {
 	// ABSTRACT METHODS:
 	/** Renders the container based on the game state. */
-	public abstract void renderStart(Graphics g);
+	//public abstract void renderStart(Graphics g);
+	public abstract void renderStart();
 	public abstract void render(Graphics g);
 	public abstract void renderEnd(Graphics g);
 	
@@ -55,20 +56,17 @@ public abstract class GUI {
 			@Override
 			protected void paintComponent(Graphics g) {
 				drawingArea = g;
-				renderStart(drawingArea);	// renders initial state
-				//container.repaint();
+				//renderStart(drawingArea);	// renders initial state
 			}
 		};
-		//container.repaint();
-		canvas.setPreferredSize(
-				new Dimension(CANVAS_SIZE, CANVAS_SIZE));
-		
+		renderStart();
+		/*canvas.setPreferredSize(
+				new Dimension(CANVAS_SIZE, CANVAS_SIZE));*/
 		container.add(canvas);
-		container.setBorder(BorderFactory
+		container.setBorder(BorderFactory	// spacing between container and frame
 				.createEmptyBorder(25, 10, 10, 10));
 		container.setVisible(true);
 		
-		// spacing between container and frame HERE
 		frame.setPreferredSize(new Dimension(FRAME_SIZE, FRAME_SIZE));
 		
 		frame.add(container);
