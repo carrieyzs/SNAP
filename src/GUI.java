@@ -1,8 +1,11 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Class that sets up the graphical representation of the game.
@@ -22,7 +25,8 @@ public abstract class GUI {
 	
 	// JSwing fields
 	protected JFrame frame;
-	protected JComponent container;
+	protected JPanel container;
+	protected JComponent canvas;
 	protected Graphics drawingArea;
 	
 	
@@ -33,6 +37,7 @@ public abstract class GUI {
 	/** Sets up the basic skeletal framework of the table. */
 	public GUI() {
 		frame = new JFrame("SNAP");
+		container = new JPanel();
 		init();
 	}
 	
@@ -45,7 +50,7 @@ public abstract class GUI {
 	 */
 	private void init() {
 		currentState = State.START;
-		container = new JComponent() {
+		canvas = new JComponent() {
 			// assign the graphics object first, so it's accessible
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -54,7 +59,14 @@ public abstract class GUI {
 				//container.repaint();
 			}
 		};
-		container.repaint();
+		//container.repaint();
+		canvas.setPreferredSize(
+				new Dimension(CANVAS_SIZE, CANVAS_SIZE));
+		
+		container.add(canvas);
+		container.setBorder(BorderFactory
+				.createEmptyBorder(25, 10, 10, 10));
+		container.setVisible(true);
 		
 		// spacing between container and frame HERE
 		frame.setPreferredSize(new Dimension(FRAME_SIZE, FRAME_SIZE));
