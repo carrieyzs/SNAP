@@ -75,8 +75,14 @@ public class Card implements Comparable<Card>{
 	 */
 	@Override
 	public boolean equals(Object o) {
-		//TODO
-		return false;
+		if (o == null) return false;
+		if (o == this) return true;
+		if (o.getClass() != getClass()) return false;
+		
+		Card other = (Card) o;
+		if (other.hashCode() != hashCode()) return false;
+		
+		return ((other.suit.equals(suit)) && (other.rank.equals(rank)));
 	}
 	
 	/**
