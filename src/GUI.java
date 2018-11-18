@@ -16,6 +16,10 @@ public abstract class GUI {
 	public abstract void render(Graphics g);
 	public abstract void renderEnd(Graphics g);
 	
+	// Constants
+	protected static final int FRAME_SIZE = 800;
+	protected static final int CANVAS_SIZE = 600;
+	
 	// JSwing fields
 	protected JFrame frame;
 	protected JComponent container;
@@ -50,7 +54,7 @@ public abstract class GUI {
 		};
 		renderStart(drawingArea);	// renders initial state
 		
-		frame.setPreferredSize(new Dimension(800, 800));
+		frame.setPreferredSize(new Dimension(FRAME_SIZE, FRAME_SIZE));
 		
 		frame.add(container);
 		
