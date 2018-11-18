@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
@@ -25,10 +26,9 @@ public abstract class GUI {
 	protected State currentState;
 	protected Game game;
 
-	/**
-	 * Sets up the basic skeletal framework of the table.
-	 */
+	/** Sets up the basic skeletal framework of the table. */
 	public GUI() {
+		frame = new JFrame("SNAP");
 		init();
 	}
 	
@@ -49,6 +49,8 @@ public abstract class GUI {
 			}
 		};
 		renderStart(drawingArea);	// renders initial state
+		
+		frame.setPreferredSize(new Dimension(800, 800));
 		
 		frame.add(container);
 		
