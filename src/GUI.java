@@ -48,12 +48,15 @@ public abstract class GUI {
 		container = new JComponent() {
 			// assign the graphics object first, so it's accessible
 			@Override
-			public void paintComponent(Graphics g) {
+			protected void paintComponent(Graphics g) {
 				drawingArea = g;
+				renderStart(drawingArea);	// renders initial state
+				//container.repaint();
 			}
 		};
-		renderStart(drawingArea);	// renders initial state
+		container.repaint();
 		
+		// spacing between container and frame HERE
 		frame.setPreferredSize(new Dimension(FRAME_SIZE, FRAME_SIZE));
 		
 		frame.add(container);
