@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -36,8 +37,8 @@ public class Table extends GUI {
 	 */
 	@Override
 	public void renderStart(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		g.setColor(Color.GRAY);
+		g.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 	}
 
 	/**
