@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -88,6 +90,11 @@ public class Table extends GUI {
 		
 		// button that initiates the game
 		JButton start = new JButton("START");
+		start.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentState = currentState.transition(game);
+			}
+		});
 		start.setPreferredSize(new Dimension(200, 50));
 		start.setFont(new Font("Arial", Font.BOLD, 25));
 		GridBagConstraints c = new GridBagConstraints();
