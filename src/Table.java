@@ -101,7 +101,7 @@ public class Table extends GUI {
 		c.gridx = 1;
 		c.gridy = 2;
 		
-		container.setBackground(Color.GRAY);
+		container.setBackground(Color.GREEN.darker());
 		container.add(start, c);
 	}
 
