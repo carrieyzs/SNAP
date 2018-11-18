@@ -105,10 +105,20 @@ public class Card implements Comparable<Card>{
 	 * rank of the cards are comparable. We compare them in the 
 	 * position that they appear in the Rank enum, which orders them
 	 * in ascending order.
+	 * @param
+	 * 		card to compare this card with
+	 * @return
+	 * 		1 - if this card is greater than argument, 
+	 * 		0 - if this card equal to argument, 
+	 * 		-1 - if this card is less than argument
 	 */
 	@Override
 	public int compareTo(Card o) {
-		//TODO
-		return 0;
+		if (rank.ordinal() < o.rank.ordinal()) 
+			return -1;
+		else if (rank.ordinal() == o.rank.ordinal()) 
+			return 0;
+		
+		return 1;
 	}
 }
