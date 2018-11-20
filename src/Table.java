@@ -43,6 +43,11 @@ public class Table extends GUI {
 	 */
 	private void setUpGame() {	// include in plan..
 		// get user name
+		String playername = (String) JOptionPane.showInputDialog(
+				frame, "Enter your name: ");
+		
+		// create the player instance for user
+		players.add(new Player(new RealPlayerStrategy(playername)));
 		
 		// get no. of players
 		String[] noOfPlayers = {"2", "3", "4"};
@@ -51,6 +56,11 @@ public class Table extends GUI {
 				null, noOfPlayers, noOfPlayers[0]);
 		
 		int np = Integer.parseInt(userInput);
+		for (int i=1; i<np; i++)	// add the rest of the players
+			players.add(new Player(new SimulatedPlayerStrategy("Player "+i)));
+		
+		// add players to game
+		// render play state
 	}
 	
 	/**
