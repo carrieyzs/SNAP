@@ -13,7 +13,7 @@ public class Player {
 	/**
 	 * Creates a new player given the respective instance of the strategy.
 	 */
-	public Player(String name, PlayerStrategy p) {
+	public Player(PlayerStrategy p) {
 		
 	}
 }
