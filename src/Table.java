@@ -20,7 +20,7 @@ import javax.swing.JTextPane;
  * @author Carrie
  */
 public class Table extends GUI {
-	private CyclicList<Player> players;
+	//private CyclicList<Player> players;
 	private Player currentPlayer;
 	private int currentPlayerIndex;
 
@@ -31,8 +31,8 @@ public class Table extends GUI {
 	 * - setting up current game
 	 */
 	public Table() {
-		game = new Game();	//might need changing later on...
-		players = new CyclicList<Player>();
+		game = new Game(new CyclicList<Player>());	//might need changing later on...
+		//players = new CyclicList<Player>();
 		currentPlayerIndex = 0;
 	}
 	
@@ -42,6 +42,8 @@ public class Table extends GUI {
 	 * Then it displays the ongoing game.
 	 */
 	private void setUpGame() {	// include in plan..
+		CyclicList<Player> players = new CyclicList<Player>();
+		
 		// get user name
 		String playername = (String) JOptionPane.showInputDialog(
 				frame, "Enter your name: ");
@@ -55,11 +57,12 @@ public class Table extends GUI {
 				frame, "Select no. of players:", "Players", JOptionPane.QUESTION_MESSAGE,
 				null, noOfPlayers, noOfPlayers[0]);
 		
+		// add the rest of the players
 		int np = Integer.parseInt(userInput);
-		for (int i=1; i<np; i++)	// add the rest of the players
+		for (int i=1; i<np; i++)	
 			players.add(new Player(new SimulatedPlayerStrategy("Player "+i)));
 		
-		// add players to game
+		game.setPlayers(players); 	// add players to game
 		// render play state
 	}
 	
