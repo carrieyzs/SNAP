@@ -73,7 +73,8 @@ public class Table extends GUI {
 	 * finished.
 	 */
 	public void render(Graphics g) {
-		
+		// play game -> this method will render the game while it's not over
+		// transition state -> if it reaches here, the game is not played anymore
 	}
 
 	/**
