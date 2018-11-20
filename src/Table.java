@@ -21,8 +21,8 @@ import javax.swing.JTextPane;
  */
 public class Table extends GUI {
 	//private CyclicList<Player> players;
-	private Player currentPlayer;
-	private int currentPlayerIndex;
+	//private Player currentPlayer;
+	//private int currentPlayerIndex;
 
 	/**
 	 * Initialises the various aspects of the game. This includes:
@@ -33,7 +33,7 @@ public class Table extends GUI {
 	public Table() {
 		game = new Game(new CyclicList<Player>());	//might need changing later on...
 		//players = new CyclicList<Player>();
-		currentPlayerIndex = 0;
+		//currentPlayerIndex = 0;
 	}
 	
 	/**
