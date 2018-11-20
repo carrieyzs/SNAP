@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
 /**
@@ -36,11 +37,30 @@ public class Table extends GUI {
 	}
 	
 	/**
+	 * Sets up the game, by allowing the user to determine no. of
+	 * players and then setting up players' cards.
+	 * Then it displays the ongoing game.
+	 */
+	private void setUpGame() {	// include in plan..
+		// get user name
+		
+		// get no. of players
+		String[] noOfPlayers = {"2", "3", "4"};
+		String userInput = (String) JOptionPane.showInputDialog(
+				frame, "Select no. of players:", "Players", JOptionPane.QUESTION_MESSAGE,
+				null, noOfPlayers, noOfPlayers[0]);
+		
+		int np = Integer.parseInt(userInput);
+	}
+	
+	/**
 	 * If the game is in play state, then the current game will be
 	 * rendered.
+	 * It will render the ongoing game as long as the game isn't 
+	 * finished.
 	 */
 	public void render(Graphics g) {
-	
+		
 	}
 
 	/**
@@ -48,7 +68,7 @@ public class Table extends GUI {
 	 * displayed.
 	 */
 //	@Override
-//	public void renderStart(Graphics g) {
+//	public void renderStart() {
 //		g.setColor(Color.GRAY);
 //		g.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 //	}
@@ -85,7 +105,7 @@ public class Table extends GUI {
 				+ "the cards played. The cards go to the one whose hand is on "
 				+ "top, thus increasing the player's hand.";
 		instructions.setText(desc);
-		// style text pane HERE
+		//TODO: style text pane HERE
 		container.add(instructions, cc);
 		
 		// button that initiates the game
@@ -93,6 +113,7 @@ public class Table extends GUI {
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentState = currentState.transition(game);
+				setUpGame();
 			}
 		});
 		start.setPreferredSize(new Dimension(200, 50));
