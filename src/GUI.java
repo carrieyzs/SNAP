@@ -17,8 +17,8 @@ public abstract class GUI {
 	/** Renders the container based on the game state. */
 	//public abstract void renderStart(Graphics g);
 	public abstract void renderStart();
-	public abstract void render(Graphics g);
-	public abstract void renderEnd(Graphics g);
+	public abstract void render();
+	public abstract void renderEnd();
 	
 	// Constants
 	protected static final int FRAME_SIZE = 800;

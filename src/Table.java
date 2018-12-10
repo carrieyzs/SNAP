@@ -72,7 +72,7 @@ public class Table extends GUI {
 	 * It will render the ongoing game as long as the game isn't 
 	 * finished.
 	 */
-	public void render(Graphics g) {
+	public void render() {
 		// play game -> this method will render the game while it's not over
 		// transition state -> if it reaches here, the game is not played anymore
 	}
@@ -145,7 +145,7 @@ public class Table extends GUI {
 	 * be displayed.
 	 */
 	@Override
-	public void renderEnd(Graphics g) {
+	public void renderEnd() {
 		// TODO Auto-generated method stub
 		
 	}
