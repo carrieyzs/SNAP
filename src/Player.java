@@ -14,6 +14,18 @@ public class Player {
 	 * Creates a new player given the respective instance of the strategy.
 	 */
 	public Player(PlayerStrategy p) {
+		player = p;
+	}
+	
+	public void play(Table t) {
 		
 	}
+	
+	public boolean match() {
+		return player.hasMatch();
+	}
+	
+//	public Rank speak() {
+//		
+//	}
 }

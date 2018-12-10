@@ -17,6 +17,7 @@ public class Game {
 		players = p;
 		// get random current player index?
 		//currentPlayerIndex = 0;
+		currentPlayer = players.get(0);		// first player starts
 	}
 	
 	public void playGame() {

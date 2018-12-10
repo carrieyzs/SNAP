@@ -56,7 +56,6 @@ public abstract class GUI {
 			@Override
 			protected void paintComponent(Graphics g) {
 				drawingArea = g;
-				//renderStart(drawingArea);	// renders initial state
 			}
 		};
 		renderStart();
