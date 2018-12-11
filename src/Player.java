@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * The Player class handles the current player as well as simulated
@@ -17,6 +18,11 @@ public class Player {
 		player = p;
 	}
 	
+	/**
+	 * 
+	 * @param t
+	 * 			Table to place card on
+	 */
 	public void play(Table t) {
 		
 	}
@@ -28,4 +34,8 @@ public class Player {
 //	public Rank speak() {
 //		
 //	}
+	
+	public void addHand(ArrayList<Card> cards) {
+		player.addPlayerHand(cards);
+	}
 }
