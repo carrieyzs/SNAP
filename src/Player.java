@@ -35,7 +35,7 @@ public class Player {
 //		
 //	}
 	
-	public void addHand(ArrayList<Card> cards) {
-		player.addPlayerHand(cards);
+	public void addHand(Card c) {
+		player.addPlayerHand(c);
 	}
 }
