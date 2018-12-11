@@ -18,6 +18,7 @@ public class CyclicList<T> implements Iterable<T> {
 	
 	private T[] data;
 	private int size;
+	private int pointer;
 	
 	/**
 	 * Create a new cyclic list.
@@ -25,6 +26,7 @@ public class CyclicList<T> implements Iterable<T> {
 	public CyclicList(){
 		data = (T[]) new Object[SIZE];
 		size = 0;
+		pointer = 0;
 	}
 	
 	/**
@@ -159,14 +161,21 @@ public class CyclicList<T> implements Iterable<T> {
 	 * @return
 	 * 		item at the next given position
 	 */
-	public T next(int index) {
-		if (index < 0)
-			throw new IndexOutOfBoundsException();
-		
-		if (index == size)	// returns first item if it's the last item
+//	public T next(int index) {
+//		if (index < 0)
+//			throw new IndexOutOfBoundsException();
+//		
+//		if (index == size)	// returns first item if it's the last item
+//			return data[0];
+//		
+//		return data[index+1];	// otherwise return the next item
+//	}
+	
+	public T next() {
+		if (pointer == size)
 			return data[0];
 		
-		return data[index+1];	// otherwise return the next item
+		return data[pointer++];
 	}
 	
 	/**
