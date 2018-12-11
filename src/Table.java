@@ -60,6 +60,26 @@ public class Table extends GUI {
 	}
 	
 	/**
+	 * Play a card on the table.
+	 * @param c
+	 * 			The card that is played
+	 */
+	public void playCard(Card c) { played.add(c); }
+	
+	/**
+	 * Gets the played cards. Usually used to add cards to the losing player's hand.
+	 * @return
+	 * 		the cards that have already been played
+	 */
+	public List<Card> getPlayed(){ 
+		List<Card> res = new ArrayList<Card>();
+		while (!played.isEmpty())
+			res.add(played.remove(0));
+		
+		return res;
+	}
+	
+	/**
 	 * If the game is in play state, then the current game will be
 	 * rendered.
 	 * It will render the ongoing game as long as the game isn't 
@@ -142,6 +162,7 @@ public class Table extends GUI {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 	public static void main(String[] args) {
 		new Table();
