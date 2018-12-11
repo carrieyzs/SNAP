@@ -1,3 +1,4 @@
+import java.util.List;
 
 // add all this to plan!
 // include javadocs
@@ -27,12 +28,20 @@ public class Game {
 	public void setGameOver(boolean flag) { isGameOver = flag; }
 	
 	/**
-	 * Typically used to give new players to a game ()
+	 * Sets the players into the current game, and distributes the cards to each.
 	 * @param p
 	 * 			sets players to the current game
 	 */
-	public void setPlayers(CyclicList<Player> p) {	// REMOVE ?
+	public void setPlayers(CyclicList<Player> p) {	
 		players = p;
+		currentPlayer = players.next();
+		
+		List<Card> deck = Card.getDeck();
+		while (!deck.isEmpty()) {		// distributes the deck of cards to each player
+			currentPlayer.addHand(deck.remove(0));
+			currentPlayer = players.next();		// move on to the next player
+		}
+		
 		currentPlayer = players.get(0);		// first player starts
 	}
 	
