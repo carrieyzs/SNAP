@@ -1,8 +1,10 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -10,10 +12,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
+import javax.swing.border.Border;
 
 /**
  * Table acts like the 'board'. It keeps track of the cards being played 
@@ -22,6 +26,10 @@ import javax.swing.JTextPane;
  * @author Carrie
  */
 public class Table extends GUI {
+	public static final int TABLE_TOP = 50;
+	public static final int TABLE_LEFT = 100;
+	public static final int TABLE_SIZE = 500;
+	
 	private List<Card> played;		// list of cards that have already been played
 
 	/**  Creates a new game, with no cards played yet. */
@@ -86,8 +94,27 @@ public class Table extends GUI {
 	 * finished.
 	 */
 	public void render() {
-		// play game -> this method will render the game while it's not over
-		// transition state -> if it reaches here, the game is not played anymore
+		// render the starting status -- before game plays
+		container.removeAll();	// clear the container of previous items
+		//Graphics2D drawing = (Graphics2D) drawingArea;
+//		Border tableEdge = BorderFactory.createCompoundBorder(
+//				BorderFactory.createRaisedBevelBorder(), 
+//				BorderFactory.createLoweredBevelBorder());
+//		canvas.setBorder(tableEdge);
+		System.out.println("graphics set color");
+		drawingArea.setColor(Color.RED);	// new Color(102,51,0) brown
+		System.out.println("graphics color set successful");
+		//drawing.setStroke(new BasicStroke(3));
+		drawingArea.drawRect(TABLE_LEFT, TABLE_TOP, TABLE_SIZE, TABLE_SIZE);
+		
+		canvas.setPreferredSize(new Dimension(CANVAS_SIZE, CANVAS_SIZE));
+		container.add(canvas);	// add canvas back
+		frame.repaint();
+		
+		// play game this method will render the game while it's not over
+		game.playGame(this, drawingArea); 
+		// transition state -> if it reaches here, the game is over
+		currentState = currentState.transition(game);
 	}
 
 	/**
@@ -107,8 +134,7 @@ public class Table extends GUI {
 	 * the next state.
 	 */
 	public void renderStart() {		
-		container.setPreferredSize(
-				new Dimension(CANVAS_SIZE, CANVAS_SIZE));
+		container.setPreferredSize(new Dimension(CANVAS_SIZE, CANVAS_SIZE));
 		container.setLayout(new GridBagLayout());
 		
 		// text that describes how the game works

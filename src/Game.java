@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.List;
 
 // add all this to plan!
@@ -46,17 +47,29 @@ public class Game {
 	}
 	
 	/**
-	 * 
+	 * Method proceeds with game plays, as well as rendering after each update.
 	 * @param t
 	 * 			Table to place the played card on
+	 * @param g
+	 * 			Graphics object to render state of the game
 	 */
-	public void playGame(Table t) {
+	public void playGame(Table t, Graphics g) {
 		// start playing game from currentPlayerIndex
 		// while game is not over
 			// while integer < players.size()
 			// all players play -- currentplayer.play; currentplayer = list.next()
 			// each player set win with no. of cards in their hand
 			// check player's card with their supposed rank -> checkslap()
-			
+		
+		renderGame(g);
+	}
+	
+	/**
+	 * Method used to show the game after each update.
+	 * @param g
+	 * 			Graphics object to display game
+	 */
+	private void renderGame(Graphics g) {
+		
 	}
 }

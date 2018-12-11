@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ public abstract class GUI {
 	protected JFrame frame;
 	protected JPanel container;
 	protected JComponent canvas;
-	protected Graphics drawingArea;
+	protected Graphics2D drawingArea;
 	
 	
 	// Game related fields
@@ -54,14 +55,16 @@ public abstract class GUI {
 		canvas = new JComponent() {
 			// assign the graphics object first, so it's accessible
 			@Override
-			protected void paintComponent(Graphics g) {
-				drawingArea = g;
+			public void paintComponent(Graphics g) {
+				System.out.println("graphics assigned");
+				drawingArea = (Graphics2D) g;
+				
 			}
 		};
 		renderStart();
 		/*canvas.setPreferredSize(
 				new Dimension(CANVAS_SIZE, CANVAS_SIZE));*/
-		container.add(canvas);
+		//container.add(canvas);
 		container.setBorder(BorderFactory	// spacing between container and frame
 				.createEmptyBorder(25, 10, 10, 10));
 		container.setVisible(true);
