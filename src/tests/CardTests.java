@@ -10,6 +10,8 @@ public class CardTests {
 	
 	public List<Card> getCustomDeck(){
 		List<Card> list = new ArrayList<Card>();
+		
+		return list;
 	}
 
 	@Test

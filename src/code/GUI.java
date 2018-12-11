@@ -56,12 +56,12 @@ public abstract class GUI {
 		canvas = new JComponent() {
 			// assign the graphics object first, so it's accessible
 			@Override
-			public void paintComponent(Graphics g) {
+			protected void paintComponent(Graphics g) {
 				System.out.println("graphics assigned");
 				drawingArea = (Graphics2D) g;
-				
 			}
 		};
+		
 		renderStart();
 		/*canvas.setPreferredSize(
 				new Dimension(CANVAS_SIZE, CANVAS_SIZE));*/
