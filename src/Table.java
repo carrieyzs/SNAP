@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -20,20 +22,12 @@ import javax.swing.JTextPane;
  * @author Carrie
  */
 public class Table extends GUI {
-	//private CyclicList<Player> players;
-	//private Player currentPlayer;
-	//private int currentPlayerIndex;
+	private List<Card> played;		// list of cards that have already been played
 
-	/**
-	 * Initialises the various aspects of the game. This includes:
-	 * - getting no. of players (2-4)
-	 * - getting the current player
-	 * - setting up current game
-	 */
+	/**  Creates a new game, with no cards played yet. */
 	public Table() {
-		game = new Game(new CyclicList<Player>());	//might need changing later on...
-		//players = new CyclicList<Player>();
-		//currentPlayerIndex = 0;
+		game = new Game();
+		played = new ArrayList<Card>();
 	}
 	
 	/**
@@ -41,12 +35,11 @@ public class Table extends GUI {
 	 * players and then setting up players' cards.
 	 * Then it displays the ongoing game.
 	 */
-	private void setUpGame() {	// include in plan..
+	private void setUpGame() {
 		CyclicList<Player> players = new CyclicList<Player>();
 		
 		// get user name
-		String playername = (String) JOptionPane.showInputDialog(
-				frame, "Enter your name: ");
+		String playername = (String) JOptionPane.showInputDialog(frame, "Enter your name: ");
 		
 		// create the player instance for user
 		players.add(new Player(new RealPlayerStrategy(playername)));
@@ -63,7 +56,7 @@ public class Table extends GUI {
 			players.add(new Player(new SimulatedPlayerStrategy("Player "+i)));
 		
 		game.setPlayers(players); 	// add players to game
-		// render play state
+		render();	// render play state
 	}
 	
 	/**
