@@ -1,3 +1,4 @@
+package code;
 
 /**
  * Using enum to control game state.
