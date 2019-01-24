@@ -121,15 +121,6 @@ public class Table extends GUI {
 	}
 
 	/**
-	 * If the game is in start state, then the start screen is displayed.
-	 */
-	// @Override
-	// public void renderStart() {
-	// g.setColor(Color.GRAY);
-	// g.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-	// }
-
-	/**
 	 * Displays the starting screen of the game. This includes the instructions of
 	 * the game play as well as the start button. When the user decides to play, the
 	 * game state transitions to the next state.

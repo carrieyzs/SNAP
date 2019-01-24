@@ -30,7 +30,7 @@ public abstract class GUI {
 	protected JFrame frame;
 	protected JPanel container;
 	protected JComponent canvas;
-	protected Graphics2D drawingArea;
+	protected Graphics drawingArea;
 	
 	
 	// Game related fields
