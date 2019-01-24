@@ -45,7 +45,7 @@ public class Table extends GUI {
 	 * setting up players' cards. Then it displays the ongoing game.
 	 */
 	private void setUpGame() {
-		CyclicList<Player> players = new CyclicList<Player>();
+		List<Player> players = new ArrayList<Player>();
 
 		// get user name
 		String playername = (String) JOptionPane.showInputDialog(frame, "Enter your name: ");

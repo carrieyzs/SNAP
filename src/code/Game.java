@@ -12,7 +12,7 @@ import java.util.List;
  * @author Carrie
  */
 public class Game {
-	private CyclicList<Player> players;
+	private List<Player> players;
 	private Player currentPlayer;
 	private int currentPlayerIndex;
 	private boolean isGameOver;
@@ -34,17 +34,22 @@ public class Game {
 	 * @param p
 	 * 			sets players to the current game
 	 */
-	public void setPlayers(CyclicList<Player> p) {	
+	public void setPlayers(List<Player> p) {	
 		players = p;
-		currentPlayer = players.next();
+		currentPlayerIndex = 0;
+		currentPlayer = players.get(currentPlayerIndex++);		// start with the first player
 		
 		List<Card> deck = Card.getDeck();
 		while (!deck.isEmpty()) {		// distributes the deck of cards to each player
+			if (currentPlayerIndex == players.size())		// go back to the start
+				currentPlayerIndex = 0;
+			
 			currentPlayer.addHand(deck.remove(0));
-			currentPlayer = players.next();		// move on to the next player
+			currentPlayer = players.get(currentPlayerIndex++);		// move on to the next player
 		}
 		
-		currentPlayer = players.get(0);		// first player starts
+		currentPlayerIndex = 0;		// reset the player after distribution
+		currentPlayer = players.get(currentPlayerIndex);
 	}
 	
 	/**

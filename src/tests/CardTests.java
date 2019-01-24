@@ -15,12 +15,12 @@ public class CardTests {
 	}
 
 	@Test
-	public void testDeck1() {
+	public void testDeck1() {	// add one item
 		
 	}
 	
 	@Test
-	public void testDeck2() {
+	public void testDeck2() {	
 		
 	}
 	
