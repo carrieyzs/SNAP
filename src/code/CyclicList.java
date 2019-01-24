@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * CyclicList is a circular version of a list. This version is a
+ * CyclicList is a circular version of an ArrayList. This version is a
  * single cyclic list, where the last item meets the first item.
  * This list does not keep track of size, and allows duplicates.
  * 
